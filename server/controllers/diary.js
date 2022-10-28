@@ -3,12 +3,12 @@ const Token = require('../models/token')
 
 async function index (req, res) {
     try {
-        console.log('Hi')
-        console.log(req.cookies)
+        //console.log('Hi')
+        //console.log(req.cookies)
         const token = await Token.getOneByToken(req.cookies["discretionUser"])
         const userId = token["user_id"]
-        console.log(userId)
-        const diaryEntries = await Diary.getAll();
+        //console.log(userId)
+        const diaryEntries = await Diary.getAll(userId);
         res.json(diaryEntries);
     } catch (err) {
         res.status(500).json({"error": err.message})

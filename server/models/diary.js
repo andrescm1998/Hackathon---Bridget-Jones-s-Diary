@@ -18,7 +18,7 @@ class Diary {
             const response = await db.query("SELECT * FROM diary");
             return response.rows.map(p => new Diary(p));
         } else {
-            const response = await db.query("SELECT * FROM diary JOIN user_account ON diary.entry_id = user_account.user_id WHERE user_id = $1", [id]);
+            const response = await db.query("SELECT * FROM diary WHERE user_id = $1", [id]);
             return response.rows.map(p => new Diary(p));
         }
     }
